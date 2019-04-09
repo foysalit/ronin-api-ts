@@ -1,0 +1,40 @@
+{
+  "name": "ronin-client",
+  "version": "0.0.5",
+  "description": "API Wrapper for ronin invoicing service",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "tslint --project \"./tsconfig.json\"",
+    "test": "mocha --reporter spec",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foysalit/ronin-api-ts.git"
+  },
+  "keywords": [
+    "ronin",
+    "api"
+  ],
+  "author": "Foysal Ahamed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foysalit/ronin-api-ts/issues"
+  },
+  "homepage": "https://github.com/foysalit/ronin-api-ts#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.2",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.2",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.2"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
