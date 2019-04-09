@@ -23,13 +23,13 @@ export default class RoninClient {
     };
 
     private connectApiCalls(url: string): RoninApiModule {
-        const list = () => this.apiCall({
+        const list = (): Promise<any> => this.apiCall({
             url, method: 'get',
         });
 
         const create = (data: object): Promise<any> => this.apiCall({
             url, method: 'post', data,
-        })
+        });
 
         return { list, create };
     };
