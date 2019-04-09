@@ -55,17 +55,78 @@ export interface RoninApiContactListResponse extends RoninApiListResponse {
     clients: RoninApiContactEntry[]
 };
 
+export interface RoninApiRecurringEntry {
+    action: number;
+    client_id: number;
+    compound_tax: boolean;
+    currency_code: string;
+    due_period: number;
+    id: number;
+    next_date: string;
+    note: string;
+    number: string;
+    occurrences_remaining: number;
+    payment_profile_id?: any;
+    po: any;
+    status: number;
+    summary: any;
+    tax: number;
+    tax2: number;
+    tax2_label: string;
+    tax_label: string;
+    tax3_label: string;
+    tax3: number;
+    time_interval: number;
+    title: string;
+    unlimited: boolean;
+    updated_at: Date;
+    subtotal: number;
+    total_cost: number;
+    client: RoninApiClientEntry,
+    recurring_schedule_items: RoninApiRecurringScheduleItem[],
+};
+
+export interface RoninApiRecurringScheduleItem {
+    id: number;
+    item_type: number;
+    price: string;
+    quantity: number;
+    recurring_schedule_id: number;
+    title: string;
+    taxable: boolean;
+    secondary_tax: boolean;
+    tertiary_tax: boolean;
+    total_tax: number;
+};
+
+export interface RoninApiRecurringListResponse extends RoninApiListResponse {
+    recurring: RoninApiRecurringEntry[]
+};
+
 export interface RoninApiModule {
     list(): Promise<any>,
-    create(data: object): Promise<any>,
-}
+    create?(data: object): Promise<any>,
+    show(id: string | number): Promise<any>,
+    update(id: string | number, data: object): Promise<any>,
+};
 
 export interface RoninApiClients extends RoninApiModule {
     list(): Promise<RoninApiClientListResponse>,
     create(data: object): Promise<RoninApiClientEntry>,
+    show(id: string | number): Promise<RoninApiClientEntry>,
+    update(id: string | number, data: object): Promise<RoninApiClientEntry>,
+    addContact(clientId: string | number, contactData: object): Promise<RoninApiContactEntry>
 };
 
 export interface RoninApiContacts extends RoninApiModule {
     list(): Promise<RoninApiContactListResponse>,
-    create(data: object): Promise<RoninApiContactEntry>,
+    show(id: string | number): Promise<RoninApiContactEntry>,
+    update(id: string | number, contactData: object): Promise<RoninApiContactEntry>,
+};
+
+export interface RoninApiRecurring extends RoninApiModule {
+    list(): Promise<RoninApiRecurringListResponse>,
+    create(data: object): Promise<RoninApiRecurringEntry>,
+    show(id: string | number): Promise<RoninApiRecurringEntry>,
+    update(id: string | number, data: object): Promise<RoninApiRecurringEntry>,
 };
